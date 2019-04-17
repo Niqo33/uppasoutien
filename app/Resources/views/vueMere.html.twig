@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+   <title>UPPA Soutien</title>
+   
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css">
+
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+   <script src="https://use.fontawesome.com/46021f08f5.js"></script>
+   
+   
+   <!-- CSS PERSO -->
+   <link rel="stylesheet" href="{{ asset('css/style.css') }}" >
+   <link rel="stylesheet" href="{{ asset('css/accueil.css') }}" >
+  
+</head>
+
+<!-- Body -->
+<body>
+    
+<!-- Header -->    
+<header>
+    
+<!-- Menu -->
+  <nav class="navbar navbar-default " >
+      <div class="navbar-header">
+            
+        <a class="navbar-brand" href="{{ path('accueil') }}">
+            <img alt="image" src="{{ asset('img/logo_uppasoutien.gif')}}" width="60px"  class="pull-left" ><span>UPPA Soutien</span>
+        </a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navtop">
+           <span class="sr-only">Toggle navigation</span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+           <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navtop" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+            {% if  is_granted('IS_AUTHENTICATED_FULLY')  %}
+        <li><a href="{{ path('rechercherCours') }}"><i class="fa fa-search fa-fw " aria-hidden="true"></i>&nbsp; Rechercher Cours</a></li>  
+        <li><a href="{{ path('proposerCours') }}"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Proposer Cours</a></li>
+        <li><a href="{{ path('rechercherUtilisateur') }}"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Rechercher Utilisateur</a></li>
+        <li><a href="{{ path('monEspace') }}"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>&nbsp; Mon Espace</a></li>
+            {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+            {% if  not is_granted('IS_AUTHENTICATED_FULLY')  %}
+        <li><a href="{{ path('fos_user_security_login') }}" ><span class="glyphicon glyphicon-log-in"></span>&nbsp; Se connecter</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}"><span class="fa fa-user-plus"></span>&nbsp; S'inscrire</a></li>
+            {% endif %}
+      </ul>
+      </div>
+  </nav>
+</header>
+
+{% block contenuCentral %}
+{% endblock %}
+  
+
+<!-- Footer -->
+{% block footer %}
+{% endblock %}
+</body>
+</html>
+

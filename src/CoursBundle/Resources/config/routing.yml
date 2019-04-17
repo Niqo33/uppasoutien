@@ -1,0 +1,68 @@
+accueil:
+    path:     /accueil
+    defaults: { _controller: CoursBundle:Cours:accueil }
+    
+rechercherCours:
+    path:     /recherchercours
+    defaults: { _controller: CoursBundle:Cours:rechercherCours }
+    
+rechercherCours_resultat:
+    path:     /recherchercours/resultatRC
+    defaults: { _controller: CoursBundle:Cours:resultatRC }
+
+    
+proposerCours:
+    path:     /proposercours
+    defaults: { _controller: CoursBundle:Cours:proposerCours }
+
+ajouterCours:
+    path:   /ajoutercours
+    defaults: { _controller: CoursBundle:Cours:ajouterCours }
+
+rechercherCours_resultat_annonce:
+    path:     /recherchercours/resultatRC/annonce/{id}
+    defaults: { _controller: CoursBundle:Cours:annonce }
+    requirements:
+        id: \d+
+        
+reserver_cours:
+    path:     /recherchercours/resultatRC/annonce/{id}/reserverCours
+    defaults: { _controller: CoursBundle:Cours:reserverCours }
+    requirements:
+        id: \d+
+        
+supprimer_cours:
+    path:     /recherchercours/resultatRC/annonce/{id}/supprimerCours
+    defaults: { _controller: CoursBundle:Cours:supprimerCours }
+    requirements:
+        id: \d+
+        
+annuler_demande_reservation_cours:
+    path:     /recherchercours/resultatRC/annonce/{id}/annulerReservationCours
+    defaults: { _controller: CoursBundle:Cours:annulerReservationCours }
+    requirements:
+        id: \d+
+        
+accepter_demande_reservation_cours:
+    path:     /recherchercours/resultatRC/annonce/{id}/accepterDemandeReservationCours
+    defaults: { _controller: CoursBundle:Cours:accepterDemandeReservationCours }
+    requirements:
+        id: \d+
+
+refuser_demande_reservation_cours:
+    path:     /recherchercours/resultatRC/annonce/{id}/refuserDemandeReservationCours
+    defaults: { _controller: CoursBundle:Cours:refuserDemandeReservationCours }
+    requirements:
+        id: \d+
+        
+poserQuestion:
+    path:     /recherchercours/resultatRC/annonce/{id}/poserQuestion
+    defaults: { _controller: CoursBundle:Cours:poserQuestion }
+    requirements:
+        id: \d+
+
+about:
+    path:     /about
+    defaults: { _controller: CoursBundle:Cours:about }    
+
+

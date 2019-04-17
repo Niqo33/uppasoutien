@@ -1,0 +1,234 @@
+body {
+    position: relative;
+    overflow-x: hidden;
+    display: block;
+}
+
+.navbar-default {
+    margin-bottom: 0px;
+    border-bottom: 1px #0f1013;
+    border-radius:inherit;
+    left:0;
+    right:0;
+    z-index:1030;
+    position:fixed;
+    top:0;
+    border-color:black;
+}
+
+.ctn-body {
+    margin-top: 60px;
+    display: block;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #3498db;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #3498db;
+    background-color: transparent;
+}
+
+
+#soustitres{
+  margin-top:20px;
+}
+
+@media (min-width: 768px) and (max-width: 1066px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+
+.input-group {
+    width: 100%;
+}
+
+#img-resultat.img-rounded {
+    width: 75px;
+    height: 75px;
+}
+
+div#row-resultats {
+  margin-top:10px;
+}
+
+div#col-rating {
+  margin-top:5px;
+}
+
+.label-right {
+        right: 6%;
+        position: absolute;
+    }
+    
+    
+.text-right {
+        top: 5%;
+        position: absolute;
+        right: 6%;
+    }
+    
+@media (min-width: 400px) {
+    .text-right {
+        font-size:1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .text-right {
+        font-size:1.8rem;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .text-right {
+        font-size:2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .text-right {
+        font-size:2.3rem;
+    }
+}
+
+
+
+.well {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    margin: 20px 0px 0px 0px;
+}
+
+#labelProfilComplet {
+    top: 12%;
+    position: absolute;
+    right: 5%;
+}
+
+#labelApercuProfil {
+    top: 20%;
+    position: absolute;
+    right: 25%;
+}
+
+.labelAnnonce {
+    margin-bottom:15px;
+    font-size:17px;
+}
+
+#nomPrenomAnnonce {
+    top: 10%;
+    position: absolute;
+    left: 20%;
+    font-size:19px;
+}
+
+#mobileAnnonce {
+    top: 20%;
+    position: absolute;
+    left: 20%;
+}
+
+#dateAvis {
+    top: 50%;
+    position: absolute;
+    right: 5%;
+}
+
+.style-avis {
+    font-size:15px;
+}
+
+.btn-annonce {
+    margin-bottom:20px; 
+    margin-top:20px;
+    padding-top:11px;
+    padding-bottom:11px;
+    text-align:center;
+}
+
+.messages {
+    position:relative;
+    }
+    
+#nomMessage {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#intituleMessage {
+    font-style:italic;
+}
+
+img.pull-left {
+    position: relative;
+    margin-top: -8px;
+}
+
+footer {
+  position:absolute;
+  width:100%;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 40px;}
+  footer span.copyright {
+    font-size: 90%;
+    line-height: 40px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none; }
+  footer ul.quicklinks {
+    font-size: 90%;
+    margin-bottom: 0;
+    line-height: 40px;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    text-transform: none; }
+    
+    
+.btn-orange {
+    background-color:orange;
+    border-color:orange;
+}
+
+.btn-orange:hover:focus:active {
+    text-decoration:none;
+    background-color:orange;
+    border-color:orange;
+}
+
+.btn-rouge {
+    background-color:#e74c3c;
+    border-color:#e74c3c;
+}
+
+.btn-rouge:hover:focus:active {
+    text-decoration:none;
+    background-color:#e74c3c;
+    border-color:#e74c3c;
+}
+
+.btn-vert {
+    background-color:#18bc9c;
+    border-color:green;
+}
+
+.btn-vert:hover:focus:active {
+    text-decoration:none;
+    background-color:green;
+    border-color:green;
+}

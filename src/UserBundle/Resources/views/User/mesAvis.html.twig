@@ -1,0 +1,56 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+{% block contenuCentral %}
+<!-- Top NAVBAR VERTICALE -->
+<script src="https://use.fontawesome.com/46021f08f5.js"></script>
+<aside>
+  {% include "UserBundle:User:menuVertical.html.twig" %} 
+</aside>
+  
+
+<!-- End NAVBAR VERTICALE --> 
+
+<!-- Top BODY -->
+<section id="main-content" style="margin-left:250px">
+    <div class="container-fluid ctn-body">
+        <div class = "row">
+            <div class = "col-md-12">
+                <h3>Donner un avis</h3><hr>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-md-2 col-md-offset-10">
+                <form >
+                    <label for="tri" class="col-md-6">Trier par :</label>
+                    <select name="tri" class="form-control">
+                        <option>Du - récent au + récent</option>
+                        <option>Du + cher au - cher</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+            <hr>
+            <div class = "row style-avis" style="margin-left:10px">
+                <div class = "col-md-12" onClick="donnerCommentaire()">
+                    {% for coursCourant in liste_recup_cours %}
+                        <div>
+                            <i class="glyphicon glyphicon-book"></i><span> &nbsp; {{coursCourant.coursP.modules.nom}} </span>
+
+                        </div>
+                        <div>
+                            <i class="glyphicon glyphicon-user"></i><span> &nbsp; {{coursCourant.coursP.formateurs}} </span>
+                        </div>
+                        <div id="dateAvis">
+                            <i class="glyphicon glyphicon-calendar"></i><span> &nbsp; {{coursCourant.coursP.date}} </span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        <hr>
+    </div>
+</section>
+
+
+{% endblock %}
+
+

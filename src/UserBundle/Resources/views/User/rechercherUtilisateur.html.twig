@@ -1,0 +1,50 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+{% block contenuCentral %}
+
+<!-- CSS PERSO -->
+<link rel="stylesheet" href="/UPPASoutien/web/bundles/framework/css/style.css" type="text/css">
+<div class="container ctn-body">
+    <div class="row">
+        <div class = "col-md-12">
+            <h4 id="soustitres">Rechercher un utilisateur</h4><hr>
+            <form action="{{ path('resultatRechercheUtilisateur') }}" method="post">
+                <!-- Boîte de texte ville ou code postal -->
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputRechercheUser" placeholder="Prénom et/ou nom" name="utilisateur">
+                    </div>
+                    <div class ="col-sm-2">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer style="background-color:#EEEEEE" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright"><strong>Copyright &copy; UPPA Soutien 2017</strong></span>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <ul class="list-inline quicklinks">
+                    <li class="list-inline-item"><a href="#"><strong>Politique de confidentialité</strong></a>
+                    </li>
+                    <li class="list-inline-item"><a href="{{ path('about') }}"><strong>À propos</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+    footer {
+    position:fixed;
+    bottom:0; }
+</style>
+{% endblock %}
+
+                    

@@ -1,0 +1,53 @@
+monEspace:
+    path:     /monespace
+    defaults: { _controller: UserBundle:User:monEspace }
+    
+monEspaceBis:
+    path:     /
+    defaults: { _controller: UserBundle:User:monEspace }
+    
+mesCours:
+    path:     /monespace/mescours
+    defaults: { _controller: UserBundle:User:mesCours }
+    
+mesAvis:
+    path:     /monespace/mesavis
+    defaults: { _controller: UserBundle:User:mesAvis }
+    
+mesInfos:
+    path:     /monespace/mesinfos
+    defaults: { _controller: UserBundle:User:mesInfos }
+    
+mesParametres_changermdp:
+    path:     /monespace/MPChangemdp
+    defaults: { _controller: UserBundle:User:MPChangemdp }
+    
+mesParametres_supprimercompte:
+    path:     /monespace/MPDeletecompte
+    defaults: { _controller: UserBundle:User:MPDeletecompte }
+    
+profile_modifier:
+    path:     /modifier
+    defaults: { _controller: UserBundle:User:Modifier }
+    
+consulterAvis:
+    path:     /consulter-ses-commentaire
+    defaults: {_controller: UserBundle:User:consulterAvis }
+    
+rechercherUtilisateur:
+    path:     /rechercherutilisateur
+    defaults: { _controller: UserBundle:User:rechercherUtilisateur }
+    
+resultatRechercheUtilisateur:
+    path:     /lancerrechercherutilisateur
+    defaults: { _controller: UserBundle:User:lancerRechercherUtilisateur }
+    
+profile_complet:
+    path:   /profilcomplet/{id}
+    defaults: { _controller: UserBundle:User:profilComplet }
+    requirements:
+        id: \d+
+        
+supprimerCompte:
+    path:     /supprimercompte
+    defaults: { _controller: UserBundle:User:supprimerCompte }

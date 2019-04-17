@@ -1,0 +1,33 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+{% block contenuCentral %}
+<link rel="stylesheet" href="/UPPASoutien/web/bundles/framework/css/style.css" type="text/css">
+<div class="container ctn-body">
+    <div class="row">
+        <div class = "col-md-12">
+            <h4 id="soustitres">Resultat de la Recherche</h4><hr>
+
+        {% for userCourant in userSearch %}
+            <div class="well">
+                {{ userCourant.prenom }}
+                &nbsp;
+                {{ userCourant.nom }}
+                
+                {% if "now"|date("m/d/Y") - userCourant.lastLogin|date("m/d/Y") > 2 %} 
+                <text style="position:absolute; right:25%">    
+                Dernière connexion : {{ userCourant.lastLogin|localizeddate('full', 'none') }}
+                </text>
+                {% else %}
+                    <text style="position:absolute; right:25%">
+                     Connecté il y a {{ userCourant.lastLogin|date("H") }} heures.
+                     </text>
+                {% endif %}
+                <text style="position:absolute; right:5%; text-decoration:none">
+                    <a href=" {{ path('profile_complet', {id: userCourant.id}) }}">Voir le profil complet</a>
+                </text>
+            </div><br>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock contenuCentral %}

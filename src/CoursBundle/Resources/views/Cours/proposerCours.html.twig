@@ -1,0 +1,169 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+{% block contenuCentral %}
+
+<!-- CSS PERSO --> 
+<link rel="stylesheet" href="/UPPASoutien/web/bundles/framework/css/style.css" type="text/css">
+<div class="container-fluid">
+    <div class="row">
+        <div class = "col-md-12">
+            <h4 id="soustitres">Proposer un cours</h4><hr>
+            <!-- Formulaire proposition de cours -->
+            {{ include("CoursBundle:Cours:alertesFlash.html.twig") }}
+            <form class="form-horizontal" method="POST" action={{ path('ajouterCours')}}>
+                <!-- Formation -->
+                <div class="form-group">
+                    <!-- Label formation -->
+                    <label for="inputFormation" class="col-sm-2 control-label">Formation</label>
+                    <!-- Liste déroulante formation -->
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <select name="formation" class="form-control">
+                            {% for formationCourant in liste_formation %}
+                                <option>{{ formationCourant.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Lien vers toutes les formations -->
+                    <!--<div class="col-sm-3">
+                        <a href="#" target="frameName">Voir toutes les formations</a>
+                    </div>-->
+                </div>
+                 
+                <!-- Année d'étude -->
+                <div class="form-group">
+                    <!-- Label année d'étude -->
+                    <label for="inputAnnee" class="col-sm-2 control-label">Année d'étude</label>
+                    <!-- Liste déroulante année d'étude -->
+                    <div class="col-sm-4">
+                        <select name="anneeEtude" class="form-control">
+                            {% for anneeEtudeCourant in liste_anneeEtude %}
+                                <option>{{ anneeEtudeCourant.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                 
+                <!-- Module -->
+                <div class="form-group">
+                    <!-- Label module --> 
+                    <label for="inputModule" class="col-sm-2 control-label">Module</label>
+                    <!-- Liste déroulante module -->
+                    <div class="col-sm-4">
+                        <select name="module" class="form-control">
+                            {% for moduleCourant in liste_module %}
+                                <option>{{ moduleCourant.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- Lien vers tous les modules -->
+                    <!--<div class="col-sm-3">
+                        <a href="#" target="frameName">Voir tous les modules</a>
+                    </div>-->
+                </div>
+                
+                <!-- Date -->
+                <div class="form-group">
+                        <label class="col-sm-2 control-label">Date du cours</label>
+                        <div class="col-sm-4">
+                            <input type="date" class="form-control" name="date" id="date">
+                        </div>
+                </div>
+                
+                <!-- Prix -->
+                <div class="form-group">
+                    <!-- Label prix -->
+                    <label for="inputPrix" class="col-sm-2 control-label">Prix/h</label>
+                    <!-- Liste déroulante prix -->
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="prix" placeholder="Montant par heure (Si gratuit mettre 0€)">
+                            <div class="input-group-addon">€</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Déplacement -->
+                <div class="form-group">
+                    <!--Label déplacement -->
+                    <label for="inputDeplacement" class="col-sm-2 control-label">Déplacement</label>
+                    <!-- Cases à cocher pour le déplacement -->
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input name="accueillir" type="checkbox" id="cbAccueil">Accueillir</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label><input name="seDeplacer" type="checkbox">Se déplacer</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Boîte de texte ville ou code postal -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <input type="text" name="villeAccueil" id="boiteVille" class="form-control" placeholder="Précisez le ville ou le CP d'accueil">
+                    </div>
+                </div>
+                
+                
+                <!-- Commentaire(s) -->
+                <div class="form-group">
+                    <!-- Label Commentaire(s) -->
+                    <label for="inputCommentaire" class="col-sm-2 control-label">Commentaire(s)</label>
+                    <div class="col-sm-9">
+                        <textarea name="commentaire" class="form-control" rows="3" placeholder="Avez-vous déja donné des cours particuliers ? Si oui, depuis combien de temps ? 
+Précisez vos horaires de cours (de 14h à 17 par exemple)"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Bouton rechercher -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Mettre en ligne le cours</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% block footer %}
+{% include "CoursBundle:Cours:footer.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        Date.prototype.toDateInputValue = (function() 
+        {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0,10);
+        });
+        $(document).ready( function() 
+        {
+            $('#date').val(new Date().toDateInputValue());
+        });
+        document.getElementById('date').value = new Date().toDateInputValue();
+    </script>
+{% endblock %}
+
+{% block JQuery %}
+<script>
+
+//Au chargement de la page
+$(document).ready(function(){
+    $('#boiteVille').hide();
+        //sur le onchange de la checkbox
+	$('#cbAccueil').change(function(){
+                //si la case a cocher est cochée
+		if(this.checked){
+			$('#boiteVille').show();
+		}else{
+			$('#boiteVille').hide();
+		} 
+	});
+});
+        
+</script>
+{% endblock %}
+
+{% endblock %}
+

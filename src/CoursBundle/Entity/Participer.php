@@ -1,0 +1,124 @@
+<?php
+
+namespace CoursBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Participer
+ *
+ * @ORM\Table(name="participer")
+ * @ORM\Entity(repositoryClass="CoursBundle\Repository\ParticiperRepository")
+ */
+class Participer
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+    */
+    private $utilisateurP;
+     
+    /**
+    * @ORM\ManyToOne(targetEntity="CoursBundle\Entity\Cours", inversedBy="participer")
+    */
+    private $coursP;
+      
+    /**
+    * @var int
+    * 
+    * @ORM\Column(name="etatCours", type="integer")
+    */
+    private $etatCours;
+       
+
+    /**
+     * Set etatCours
+     *
+     * @param integer $etatCours
+     *
+     * @return Participer
+     */
+    public function setEtatCours($etatCours)
+    {
+        $this->etatCours = $etatCours;
+
+        return $this;
+    }
+
+    /**
+     * Get etatCours
+     *
+     * @return integer
+     */
+    public function getEtatCours()
+    {
+        return $this->etatCours;
+    }
+
+    /**
+     * Set coursP
+     *
+     * @param \CoursBundle\Entity\Cours $coursP
+     *
+     * @return Participer
+     */
+    public function setCoursP(\CoursBundle\Entity\Cours $coursP = null)
+    {
+        $this->coursP = $coursP;
+
+        return $this;
+    }
+
+    /**
+     * Get coursP
+     *
+     * @return \CoursBundle\Entity\Cours
+     */
+    public function getCoursP()
+    {
+        return $this->coursP;
+    }
+
+    /**
+     * Set utilisateurP
+     *
+     * @param \UserBundle\Entity\User $utilisateurP
+     *
+     * @return Participer
+     */
+    public function setUtilisateurP(\UserBundle\Entity\User $utilisateurP = null)
+    {
+        $this->utilisateurP = $utilisateurP;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateurP
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getUtilisateurP()
+    {
+        return $this->utilisateurP;
+    }
+}

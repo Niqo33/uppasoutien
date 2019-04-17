@@ -1,0 +1,88 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+{% block contenuCentral %}
+<!-- Top NAVBAR VERTICALE -->
+<script src="https://use.fontawesome.com/46021f08f5.js"></script>
+<aside>
+  {% include "UserBundle:User:menuVertical.html.twig" %}  
+</aside>
+  
+
+<!-- End NAVBAR VERTICALE --> 
+
+<!-- Top BODY -->
+<section id="main-content" style="margin-left:250px">
+    <div class="container-fluid ctn-body">
+        <div class = "row">
+            <div class = "col-md-12">
+                <h3>Supprimer le compte</h3><hr>
+            
+            
+            <!-- Message alerte -->
+            <div class="alert alert-warning">
+                <i class="fa fa-exclamation-circle fa-fw" aria-hidden="true"></i>&nbsp; 
+                <strong>En supprimant votre compte</strong><br> Toutes vos réservations en cours seront annulées : 
+                <a href="{{ path('monEspace') }}"><FONT COLOR=#0000CC > Voir vos réservations </FONT></a>
+            </div>
+                 <!-- Formulaire Suppresion compte -->
+            <form class="form-horizontal" action="{{ path('supprimerCompte') }}">
+                <p>Si vous souhaitez vraiment supprimer votre compte et afin que nous puissions continuer d'améliorer notre service, nous vous demandons simplement de nous donner la raison de votre décision</p>
+                <br>
+                
+                <!-- Raison -->
+                <div class="form-group">
+                    <label for="inputRaison" class="col-md-3 control-label">Raison</label>
+                    <div class="col-md-4">
+                        <select class="form-control">
+                            <option>Je n'aime pas cette application</option>
+                            <option>Je n'utilise plus cette application</option>
+                            <option>Inscription par erreur</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Recommandation -->
+                <div class="form-group">
+                    <!-- Label recommandation --> 
+                    <label for="inputRecommandation" class="col-md-3 control-label">Recommanderiez-vous UPPA Soutien ?</label>
+                    <!-- Liste déroulante module -->
+                    <div class="col-md-2">
+                        <select class="form-control">
+                            <option>Oui</option>
+                            <option>Non</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Suggestion(s) -->
+                <div class="form-group">
+                    <!-- Label Suggestion(s) -->
+                    <label for="inputSuggestion" class="col-md-3 control-label">Suggestion(s) d'amélioration(s) ?</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" rows="3" placeholder=""></textarea>
+                    </div>
+                </div>
+                
+                <!-- Mot de passe -->
+                <div class="form-group">
+                    <label for="inputMotDePasse" class="col-md-3 control-label">Mot de passe</label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMotDePasse">
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Bouton suppression -->
+                <div class="form-group">
+                    <div class="col-md-offset-3 ">
+                        <button type="submit" class="btn btn-danger"><strong>Supprimer mon compte</strong></button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

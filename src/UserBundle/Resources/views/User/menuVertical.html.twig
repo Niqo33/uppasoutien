@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="{{ asset('css/menuVertical.css') }}">
+
+
+      
+<div class="nav-side-menu">
+
+      <i class="fa fa-bars fa-lg toggle-btn" data-toggle="collapse" data-target="#menu-vertical"></i>
+
+        <div class="menu-list">
+
+            <ul id="menu-vertical" class="menu-content collapse out">
+                <li>
+                  <a href="{{ path('monEspace') }}">
+                  <i class="fa fa-book fa-lg"></i> Mes Cours</a>
+                </li>
+
+                <li  data-toggle="collapse" data-target="#avis" class="collapsed">
+                  <a href="#"><i class="fa fa-star-half-o fa-lg"></i> Mes Avis <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="avis">
+                    <li><a href="{{ path('mesAvis') }}">Donner un avis</a></li>
+                    <li><a href="#">Consulter un avis</a></li>
+                </ul>
+
+
+                <li data-toggle="collapse" data-target="#infos" class="collapsed">
+                  <a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user-o fa-lg"></i> Mes infos </a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#parametres" class="collapsed">
+                  <a href="#"><i class="fa fa-cog fa-lg"></i> Mes paramètres <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="parametres">
+                  <li><a href="{{ path('fos_user_change_password')}}">Changer le mot de passe</a></li>
+                  <li><a href="{{ path('mesParametres_supprimercompte') }}">Supprimer le compte</a></li>
+                </ul>
+                <span class = "pull-down"><p><a href="{{ path('fos_user_security_logout') }}" class="btn btn-primary" role="button" id="btnLogout">Se déconnecter</a></p>
+                </span>
+            </ul>    
+        </div>   
+</div>

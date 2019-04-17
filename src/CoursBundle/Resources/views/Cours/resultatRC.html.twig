@@ -1,0 +1,149 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+{% block contenuCentral %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/css/bootstrap-slider.css" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.js"></script>
+<div class="container ctn-body">
+    <h4 id="soustitres">Resultat de la recherche</h4><hr>
+    <div class="row">
+        <div class="col-md-3">
+            <span><a href="{{ path('rechercherCours') }}"><span aria-hidden="true">&larr;</span>&nbsp; Retourner à la recherche</a></span>
+        </div>
+        <div class="col-md-6" id="nbResultat">
+            {% if countCours != 0 %}
+                <span><b>{{ countCours }} résultat(s) correspondant(s) à votre recherche.</b></span>
+            {% else %}
+                <span><b>Aucun cours correspondant.</b></span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px";>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form action="{{ path('rechercherCours_resultat') }}" method="post">
+                        <div class="form-group" style="display:none;">
+                            <input type="text" name="formation" value="{{ f }}">
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <input type="text" name="anneeEtude" value="{{ a }}">
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <input type="text" name="module" value="{{ m }}">
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <input type="text" name="date" value="{{ d }}">
+                        </div>
+                        <div class="form-group">
+                            <!-- Label module --> 
+                            <p><b>Trier par</b></p>
+                            <!-- Liste déroulante module -->
+                                <select class="form-control" name="tri">
+                                    <option>Du - cher au + cher</option>
+                                    <option>Du + cher au - cher</option>
+                                </select>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <p><b>Prix</b></p>
+                                De 5€ à 200€ (/h)
+                                <br><br>
+                                <input type="range" value="15" max="50" min="0" step="1" />
+                                <input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="200" data-slider-step="5" data-slider-value="[0,200]"/>
+                                <script>$("#ex2").slider({});</script>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <p><b>Déplacement</b></p>
+                                <input type="radio" name="déplacement" value="tous" checked /> Tous
+                                <br />
+                                <input type="radio" name="déplacement" value="accueille" /> Accueille
+                                <br />
+                                <input type="radio" name="déplacement" value="se déplace" /> Se déplace
+                                <br />
+                                <input type="radio" name="déplacement" value="les deux" /> Les deux
+                                <br />
+                        </div>
+                        {#<hr>
+                        <div class="form-group">
+                        <p><b>Photo de profil</b></p>
+                            <input type="radio" name="photodeprofil" value="tous" checked /> Tous
+                            <br />
+                            <input type="radio" name="photodeprofil" value="avecPP" /> Avec photo de profil
+                            <br />
+                        </div>#}
+                        <hr>
+                        <button class="btn btn-primary btn-block" type="submit">Appliquer les filtres</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <hr>
+            {% for coursCourant in liste_cours %}
+            <a href="{{ path('rechercherCours_resultat_annonce', {id:coursCourant.id }) }}">
+            <div class="row" style="color:black">
+                
+                <div class="col-md-2"><img style="width:75px" src="{{ asset('img/boss.png') }}" class="img-rounded" /></div>
+                <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5 class="text-left">{{ coursCourant.formateurs.prenom }} {{ coursCourant.formateurs.nom }}</h5></div>
+                    <div class="col-md-6">
+                        <h5 class="text-center">{{ coursCourant.date| localizeddate('full', 'none') }}</h5></div>
+                    <div class="col-md-3">
+                        <h5 class="text text-right">{{ coursCourant.prix }} €/h </h5></div>
+                </div>
+                <div class="row" id="row-resultats">
+                    <div class="col-md-3" id="col-rating"><!--<i class="glyphicon glyphicon-star"></i><span><!--3.6/5--> </span>
+                        {% if coursCourant.etatReservation == 0 %}
+                            <b><font color="green"></color>Cours Libre</font></b>
+                        {% endif %}
+                        {% if coursCourant.etatReservation == 1 %}
+                            <b><font color="orange">Cours en attente de réservation</font></b>
+                        {% endif %}
+                        {% if coursCourant.etatReservation == 2 %}
+                            <b><font color="red">Cours complet</font></b>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-center"><b>{{ coursCourant.formations.nom }}</b> <br> {{ coursCourant.modules.nom }} - {{ coursCourant.anneeEtudes.nom }}</h5></div>
+                    <div class="col-md-3">
+                        {% if coursCourant.Accueille == 1 %}
+                        <span class="fa-stack fa-lg label-right">
+                            <i class="fa fa-home fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                        <br>
+                        {% endif %}
+                        {% if coursCourant.Accueille == 0 %}
+                        <span class="fa-stack fa-lg label-right">
+                            <i class="fa fa-home fa-stack-1x" aria-hidden="true"></i>
+                            <i class="fa fa-times fa-stack-1x text-danger" aria-hidden="true"></i>
+                        </span><br>
+                        {% endif %}
+                        {% if coursCourant.deplacement == 1 %}
+                        <span class="fa-stack fa-lg label-right">
+                            <i class="fa fa-car fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                        {% endif %}
+                        {% if coursCourant.deplacement == 0%}
+                        <span class="fa-stack fa-lg label-right">
+                            <i class="fa fa-car fa-stack-1x" aria-hidden="true"></i>
+                            <i class="fa fa-times fa-stack-1x text-danger" aria-hidden="true"></i>
+                        </span>
+                        {% endif %}
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+            </a>
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include "CoursBundle:Cours:footer.html.twig" %} 
+{% endblock %}

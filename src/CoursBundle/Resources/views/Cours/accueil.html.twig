@@ -1,0 +1,96 @@
+{% extends "::vueMere.html.twig" %}
+
+{% block contenuCentral %}
+    <!-- Additional fonts for this theme -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this theme -->
+    <link href="{{ asset('css/agency.css') }}" rel="stylesheet">
+
+    
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+	<script src="{{ asset('js/agency.js') }}"></script>
+	
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Leçons privées pour les membres de l'UPPA</div>
+                <div class="intro-heading">UPPA Soutien</div>
+                <a href="#services" class="page-scroll btn btn-xl">En savoir plus</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services -->
+    <section id="services" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Fonctionnalités</h2>
+                    <br><br><br>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Proposes ton propre cours</h4>
+                    <p class="text-muted">Aides les autres membres à apprendre tout en approfondissant tes connaissances. Gagnes de l'argent et rencontres de nouvelles personnes.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-hand-peace-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Apprends plus facilement</h4>
+                    <p class="text-muted">Rejoins des cours et combles tes lacunes. Travailler en groupe est plus efficace c'est bien connu ! </p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-star-half-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Notes les membres avec qui tu as travaillé</h4>
+                    <p class="text-muted">Evalues et indiques aux autres avec qui tu as aimé travaillé. Essayes d'avoir les meilleurs notes possibles pour avoir une bonne réputation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer style="background-color:#EEEEEE">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright"><strong>Copyright &copy; UPPA Soutien 2017</strong></span>
+                </div>
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item"><a href="#"><strong>Politique de confidentialité</strong></a>
+                        </li>
+                        <li class="list-inline-item"><a href="{{ path('about') }}"><strong>A propos</strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	<!-- Custom JavaScript for this theme -->
+	<script src="js/agency.min.js"></script>
+	
+{% endblock contenuCentral %}

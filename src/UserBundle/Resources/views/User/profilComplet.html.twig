@@ -1,0 +1,53 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+{% block contenuCentral %}
+<div class="container ctn-body">
+    <div class="row">
+        <div class = "col-md-12">
+            <h4 id="soustitres">Aperçu du profil complet</h4><hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{user.prenom}} {{ user.nom }}</h3><br>
+                    <h5><b>Ville : </b>{{user.ville}}</h5>
+                    {% if user.presentation == null %}
+                        <h5 style="font-style:italic">Cet utilisateur n'a pas de présentation</h5>
+                    {% endif %}
+                    {% if user.presentation != null %}
+                        <h5 style="font-style:italic">{{ user.presentation }}</h5>
+                    {% endif %}
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                <h5 id="soustitres">Cours en tant que Formateur</h5><hr>
+                {% for coursFormateurCourant in liste_cours_formateur %}
+                    <a href="{{ path('rechercherCours_resultat_annonce', {id:coursFormateurCourant.id}) }}">
+                        <div class="well" style="background-color:#ecf0f1">
+                            <text>
+                                {{ coursFormateurCourant.anneeEtudes.nom }} -
+                                {{ coursFormateurCourant.modules.nom }} -
+                                {{ coursFormateurCourant.date|localizeddate('full', 'none') }}
+                            </text>
+                        </div>
+                    </a>
+                {% endfor %}
+                </div>
+                    <div class="col-md-12" style="margin-top: 15px;">
+                    <h5 id="soustitres" >Cours en tant qu'Éleve</h5><hr>
+                    {#{% for coursEleveCourant in liste_cours_eleve %}#}
+                        <text>
+                            Aucun cours en tant qu'élève.
+                        </text>
+                    {#{% endfor %}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>
+{% endblock %}
+{% block footer %}
+    {% include "CoursBundle:Cours:footer.html.twig" %} 
+{% endblock %}

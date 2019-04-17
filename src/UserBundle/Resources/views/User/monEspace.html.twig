@@ -1,0 +1,211 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+
+{% block contenuCentral %}
+<!-- Top NAVBAR VERTICALE -->
+<script src="https://use.fontawesome.com/46021f08f5.js"></script>
+<aside>
+  {% include "UserBundle:User:menuVertical.html.twig" %} 
+</aside>
+<!-- End NAVBAR VERTICALE --> 
+
+<!-- Top BODY -->
+<section id="main-content" style="margin-left:250px">
+    <div class="container-fluid ctn-body">
+        <div class = "row">
+            <div class = "col-md-12">
+            <h3>Mes Cours</h3><hr>
+                <section style="margin-left:50px">
+                    <div class="row">
+                        <div class="col-md-12">
+                          <h4>Propositions de cours</h4><hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <!--PANEL COURS PROPOSES-->
+                        <div class="col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Mes Cours proposés</div>
+                                {% if participations_0 %}
+                                    {% for participation in participations_0 if participation %}
+                                            <a href="{{ path('rechercherCours_resultat_annonce', {id:participation.coursP.id}) }}">
+                                                <div class="panel-body">
+                                                    <span class="pull-left">
+                                                        {{ participation.coursP.modules.nom }} - {{ participation.coursP.date|date ('d/m/y') }}
+                                                    </span>
+                                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                    {% else %}
+                                        <div class="panel-body">
+                                            <span class="pull-left">
+                                                AUCUN COURS PROPOSÉS    
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="panel-body">
+                                        <span class="pull-left">
+                                            AUCUN COURS PROPOSÉS    
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!--PANEL COURS EN ATTENTE DE CONFIRMATION-->
+                        <div class="col-md-4">
+                            <div class = "panel panel-warning">
+                                <div class="panel-heading">Mes Cours en attente de confirmation</div>
+                                {% if participations_1 %}
+                                    {% for participation in participations_1 if participation %}
+                                        <a href="{{ path('rechercherCours_resultat_annonce', {id:participation.coursP.id}) }}">
+                                            <div class="panel-body">
+                                                <span class="pull-left">
+                                                    {{ participation.coursP.modules.nom }} - {{ participation.coursP.date|date ('d/m/y') }}
+                                                </span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <div class="panel-body">
+                                            <span class="pull-left" style="text-align:center">
+                                                AUCUN COURS EN ATTENTE DE CONFIRMATION    
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="panel-body">
+                                        <span class="pull-left" style="text-align:center">
+                                            AUCUN COURS EN ATTENTE DE CONFIRMATION    
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    
+                    
+                    <!--PANEL COURS ACCEPTES-->
+                        <div class="col-md-4">
+                            <div class = "panel panel-success">
+                                <div class="panel-heading">Mes Cours acceptés</div>
+                                {% if participations_2 %}
+                                    {% for participation in participations_2 if participation %}
+                                        <a href="{{ path('rechercherCours_resultat_annonce', {id:participation.coursP.id}) }}">
+                                            <div class="panel-body">
+                                                <span class="pull-left">
+                                                    {{ participation.coursP.modules.nom }} - {{ participation.coursP.date|date ('d/m/y') }}
+                                                </span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                            <div class="panel-body">
+                                                <span class="pull-left" style="text-align:center">
+                                                    AUCUN COURS ACCEPTÉS   
+                                                </span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                    {% endfor %}
+                                {% else %}
+                                        <div class="panel-body">
+                                            <span class="pull-left" style="text-align:center">
+                                                AUCUN COURS ACCEPTÉS   
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                          <h4>Demandes de cours</h4><hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <!--PANEL COURS RESERVES-->
+                        <div class = "col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Mes Cours demandés</div>
+                                {% if liste_cours_eleve %}
+                                    {% for coursCourant in liste_cours_eleve if coursCourant.etatCours == 1 %}
+                                        <a href="{{ path('rechercherCours_resultat_annonce', {id:coursCourant.coursP.id}) }}">
+                                            <div class="panel-body">
+                                                <span class="pull-left">
+                                                    {{ coursCourant.coursP.modules.nom }} - {{ coursCourant.coursP.date|date ('d/m/y') }}
+                                                </span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <div class="panel-body">
+                                            <span class="pull-left" style="text-align:center">
+                                                AUCUN COURS DEMANDÉS   
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="panel-body">
+                                        <span class="pull-left" style="text-align:center">
+                                            AUCUN COURS DEMANDÉS   
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!--PANEL COURS DEMANDES-->
+                        <div class = "col-md-6">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">Mes Cours réservés</div>
+                                 {% if liste_cours_eleve %}    
+                                    {% for coursCourant in liste_cours_eleve if coursCourant.etatCours == 2 %}
+                                        <a href="{{ path('rechercherCours_resultat_annonce', {id:coursCourant.coursP.id}) }}">
+                                            <div class="panel-body">
+                                                <span class="pull-left">
+                                                    {{ coursCourant.coursP.modules.nom }} - {{ coursCourant.coursP.date|date ('d/m/y') }}
+                                                </span>
+                                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </a>
+                                    {% else %}
+                                        <div class="panel-body">
+                                            <span class="pull-left" style="text-align:center">
+                                                AUCUN COURS RÉSERVÉS   
+                                            </span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="panel-body">
+                                        <span class="pull-left" style="text-align:center">
+                                            AUCUN COURS RÉSERVÉS   
+                                        </span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End BODY -->
+{% endblock %}

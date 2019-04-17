@@ -1,0 +1,101 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<aside>
+{% include "UserBundle:User:menuVertical.html.twig" %} 
+</aside>
+<style>
+        .nav-side-menu {
+    left:0;
+}
+</style>
+
+
+<section id="main-content" style="margin-left:250px">
+    <div class="container-fluid ctn-body">
+        <div class = "row">
+            <div class = "col-md-12">
+                <h3>Modifier son profil</h3><hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3">
+                        <a href=" {{ path('profile_complet', {id: user.id}) }}">
+                            <button class="btn btn-primary btn-block" style="padding: 4px; text-color:white; margin-left: -7px; margin-bottom:10px">Apercu du profil complet
+                            </button>
+                        </a>
+                    </div>
+        </div>
+            <div class="row">        
+            <!-- Formulaire profil -->
+            <form class="form-horizontal" action="{{ path('profile_modifier')}}">
+                <!-- Nom -->
+                <div class="form-group">
+                    <label for="inputNom" class="col-md-2 control-label">Nom</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input name="nom" type="text" class="form-control" id="inputNom" value="{{ user.nom }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prenom -->
+                <div class="form-group">
+                    <label for="inputPrenom" class="col-md-2 control-label">Prenom</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input name="prenom" type="text" class="form-control" id="inputPrenom" value="{{ user.prenom }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adresse mail -->
+                <div class="form-group">
+                    <label for="inputMail" class="col-md-2 control-label">Adresse mail</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input name="mail" type="text" class="form-control" id="inputMail" value="{{ user.email }}" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile -->
+                <div class="form-group">
+                    <label for="inputMobile" class="col-md-2 control-label">Mobile</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input name="mobile" type="text" class="form-control" id="inputMobile" value="{{ user.mobile }}">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ville -->
+                <div class="form-group">
+                    <label for="inputVille" class="col-md-2 control-label">Ville</label>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input name="ville" type="text" class="form-control" id="inputVille" value="{{ user.ville }}" >
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Présentation -->
+                <div class="form-group">
+                    <label for="inputVille" class="col-md-2 control-label">Présentation</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <textarea name="presentation"  class="form-control" id="inputPresentation" cols="100" placeholder="Quels sont vos diplômes ? Quel est votre fonction au sein de l'UPPA ?" value="{{ user.presentation }}" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                 
+                <!-- Bouton enregistrer -->
+                <div class="form-group">
+                    <div class="col-md-offset-2 ">
+                        <button type="submit" class="btn btn-default">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,287 @@
+{% extends "::vueMere.html.twig" %} {#La vue fille 1 hérite de la vue mère #}
+
+{% block contenuCentral %}
+<div class="container ctn-body">
+    
+    {# PARTIE BOUTONS #}
+    <div class="row">
+        {{ include("CoursBundle:Cours:alertesFlash.html.twig") }}
+        {# Si l'utilisateur n'est pas le formateur ET n'est pas l'élève #}
+        {% if (user != cours.formateurs and user != participer.utilisateurP) %}
+        
+            {# Si le cours n'est pas réservé ET qu'il n'y a pas de demande de réservation en cours #}
+            {% if participer.etatCours == 0 %}
+                <div class="col-md-12">
+                    <a href="{{ path('reserver_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary">Envoyer une demande de réservation</button>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+            
+            {# Si le cours est en cours de réservation (= en attente d'acceptation) #}
+            {%if participer.etatCours == 1 %}
+                <div class="col-md-12">
+                    <div class="alert alert-warning btn-annonce">Ce cours est en cours de réservation</div>
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+            
+            {# Si le cours est réservé #}
+            {% if participer.etatCours == 2 %}
+                <div class="col-md-12">
+                    <div class="alert alert-danger btn-annonce btn-orange">Ce cours a déja été réservé</div>
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+        {% endif %}
+        
+        {# Si l'utilisateur est l'élève #}
+        {% if user == participer.utilisateurP %}
+        
+            {# Si la demande de réservation a été envoyée #}
+            {% if participer.etatCours == 1 %}
+                <div class="col-md-12">
+                        <a href="{{ path('annuler_demande_reservation_cours', {id: cours.id}) }}" >
+                            <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Annuler demande de réservation</button>
+                        </a>
+                        <div class="clearfix"></div>
+                    </div>
+            {% endif %}
+            
+            {# Si la demande de réservation a été acceptée #}
+            {% if participer.etatCours == 2 %}
+                <div class="col-md-3">
+                    <div class="alert alert-success btn-annonce">Le cours a bien été réservée</div>
+                </div>
+                <div class="col-md-9">
+                    <a href="{{ path('annuler_demande_reservation_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Annuler la réservation</button>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            {% endif %}
+        {% endif %}
+        
+        {# Si l'utilisateur est le formateur #}
+        {% if user == cours.formateurs %}
+        
+            {# Si le cours n'a pas été encore réservé #}
+            {% if participer.etatCours == 0 %}
+                <div class="col-md-3">
+                    <div class="alert alert-success btn-annonce">En attente de réservation...</div>
+                </div>
+                <div class="col-md-9">
+                    <a href="{{ path('supprimer_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Supprimer le cours</button>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            {% endif %}
+            
+            {# Si le cours est en attente d'acceptation ( = demande de réservation ) #}
+            {% if  participer.etatCours == 1 %}
+                <div class="col-md-4">
+                    <a href="{{ path('accepter_demande_reservation_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-vert">Accepter la demande de réservation</button>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('refuser_demande_reservation_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Refuser la demande de réservation</button>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ path('supprimer_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Supprimer le cours</button>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            {% endif %}
+            
+            {# Si le cours est reservé #}
+            {% if participer.etatCours == 2 %}
+                <div class="col-md-3">
+                    <div class="alert alert-success btn-annonce btn-orange">Le Cours est reservé</div>
+                </div>
+                <div class="col-md-9">
+                    <a href="{{ path('supprimer_cours', {id: cours.id}) }}" >
+                        <button class="btn btn-default btn-block btn-annonce btn-primary btn-rouge">Supprimer le cours</button>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            {% endif %}
+        {% endif %}
+    </div>
+    
+    {# PARTIE PANELS #}
+    <div class="row">
+        <div class="col-md-6">
+            
+            {# Panel Annonce #}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Annonce</h3></div>
+                <div class="panel-body">
+                        <h5><strong>Formation : </strong>{{ cours.formations.nom }}</h5>
+                        <h5><strong>Année d'étude : </strong>{{ cours.anneeEtudes.nom }}</h5>
+                        <h5><strong>Module : </strong>{{ cours.modules.nom }}</h5>
+                        <h5><strong>Date du cours : </strong>{{ cours.date| localizeddate('full', 'none') }}</h5>
+                        {% if cours.accueille == 1 %}
+                            <h5><strong>Accueille à : </strong>{{ cours.villeAccueil }}</h5>
+                        {% endif %}
+                        {% if cours.accueille == 0 %}
+                            <h5 style="font-style:italic;">Cet utilisateur ne souhaite pas accueillir à son domicile.</h5>
+                        {% endif %}
+                        {% if cours.deplacement == 1 %}
+                            <h5 style="font-style:italic;">Cet utilisateur peut se déplacer chez vous.</h5>
+                        {% endif %}
+                        {% if cours.deplacement == 0 %}
+                            <h5 >Cet utilisateur ne souhaite pas se déplacer.</h5>
+                        {% endif %}
+                    <div class="well">
+                        <h5 style="margin-top:5px"><strong>Commentaire : </strong></h5>
+                        <p>{{ cours.commentaire }}</p>
+                    </div>
+                        <h3 class="text text-right">{{ cours.prix }} €/h</h3>
+                </div>
+            </div>
+            
+            {# Panel du profil #}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        
+                        {# Si personne n'a réservé ce cours #}
+                        {% if participer.etatCours == 0 or participer.etatCours == 1 %}
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Profil du formateur</h3>
+                            </div>
+                            <div class="panel-body">
+                                <img src="{{ asset('img/boss.png') }}" class="img-rounded" width="70px" height="auto"/>
+                                <div id="nomPrenomAnnonce">
+                                    <p>{{ cours.formateurs.prenom }} {{ cours.formateurs.nom }}</p>
+                                </div>
+                                <a id="labelProfilComplet" href="{{ path('profile_complet', {id: cours.formateurs.id}) }}">Voir le profil complet</a>
+                                {#<div class="clearfix"></div>#}
+                                <div id="mobileAnnonce">
+                                    <i class="glyphicon glyphicon-earphone"></i>
+                                    <span>Masqué</span>&nbsp;
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    <span>Masqué</span>
+                                </div>
+                                <hr />
+                                <h5 class="labelAnnonce"><strong>Activité</strong></h5>
+                                <p>Cours donné(s) : 0</p>
+                                <p>Cours reçu(s) : 0</p>
+                                <p>Dernière connexion le : {{ user.lastLogin|localizeddate('full', 'none') }}</p>
+                                <hr />
+                                <h5 class="labelAnnonce"><strong>Avis</strong></h5>
+                                <img src="{{ asset('img/boss.png') }}" width="35px" height="35px" class="img-rounded" />
+                                <i class="glyphicon glyphicon-star"></i><span>3.5 / 5</span>
+                                <i class="glyphicon glyphicon-book"></i><span>Proba stats</span>
+                                <div class="clearfix"></div>
+                                <p>John Doe : Élève très sympathique. Je recommande !</p>
+                                <hr /><a href="#">Voir tous les avis</a>
+                            </div>
+                            
+                        {# Si un élève a réservé ce cours #}    
+                        {% elseif participer.etatCours == 2 %}
+                        
+                            {# Si l'utilisateur est le formateur #}
+                            {% if user==formateur %}
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Profil de l'élève</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <img src="{{ asset('img/boss.png') }}" class="img-rounded" width="70px" height="auto"/>
+                                    <div id="nomPrenomAnnonce">
+                                        <p>{{ participer.utilisateurP.prenom }} {{ participer.utilisateurP.nom }}</p>
+                                    </div>
+                                    <a id="labelProfilComplet" href="{{ path('profile_complet', {id: participer.utilisateurP.id}) }}">Voir le profil complet</a>
+                                    <div class="clearfix"></div>
+                                    <div id="mobileAnnonce">
+                                        <i class="glyphicon glyphicon-earphone"></i>
+                                        <span>{{ participer.utilisateurP.mobile }}</span>&nbsp;
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                        <span>{{ participer.utilisateurP.email }}</span>
+                                    </div>
+                                    <hr />
+                                    <h5 class="labelAnnonce"><strong>Activité </strong></h5>
+                                    <p>Cours donné(s) : 0</p>
+                                    <p>Cours reçu(s) : 0</p>
+                                    <p>Dernière connexion le : {{ user.lastLogin|localizeddate('full', 'none') }}</p>
+                                    <hr />
+                                    <h5 class="labelAnnonce"><strong>Avis</strong></h5>
+                                    <img src="{{ asset('img/boss.png') }}" width="35px" height="35px" class="img-rounded" />
+                                    <i class="glyphicon glyphicon-star"></i><span>3.1 / 5</span>
+                                    <i class="glyphicon glyphicon-book"></i><span>M1102 - Comptabilité & Gestion</span>
+                                    <div class="clearfix"></div>
+                                    <p>Ertaud P. : Bonne séance de comptabilité !</p>
+                                    <hr /><a href="#">Voir tous les avis</a>
+                                </div>
+                                
+                            {# Si l'utilisateur est l'élève ou une personne extérieure #}    
+                            {% elseif user==participer.utilisateurP %}
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Profil du formateur</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <img src="{{ asset('img/boss.png') }}" class="img-rounded" width="70px" height="auto"/>
+                                    <div id="nomPrenomAnnonce">
+                                        <p>{{ cours.formateurs.prenom }} {{ cours.formateurs.nom }}</p>
+                                    </div>
+                                    <a id="labelProfilComplet" href="{{ path('profile_complet', {id: cours.formateurs.id}) }}">Voir le profil complet</a>
+                                    {#<div class="clearfix"></div>#}
+                                    <div id="mobileAnnonce">
+                                        <i class="glyphicon glyphicon-earphone"></i>
+                                        <span>{{ cours.formateurs.mobile }}</span>&nbsp;
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                        <span>{{ cours.formateurs.email }}</span>
+                                    </div>
+                                    <hr />
+                                    <h5 class="labelAnnonce"><strong>Activité</strong></h5>
+                                    <p>Cours donné(s) : 0</p>
+                                    <p>Cours reçu(s) : 0</p>
+                                    <p>Dernière connexion le : {{ user.lastLogin|localizeddate('full', 'none') }}</p>
+                                    <hr />
+                                    <h5 class="labelAnnonce"><strong>Avis</strong></h5>
+                                    <img src="{{ asset('img/boss.png') }}" width="35px" height="35px" class="img-rounded" />
+                                    <i class="glyphicon glyphicon-star"></i><span>3.5 / 5</span>
+                                    <i class="glyphicon glyphicon-book"></i><span>Proba stats</span>
+                                    <div class="clearfix"></div>
+                                    <p>John Doe : Élève très sympathique. Je recommande !</p>
+                                    <hr /><a href="#">Voir tous les avis</a>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Questions pour le formateur</h3></div>
+                <div class="panel-body">
+                    <div class="messages">
+                        {% for discussionCourant in liste_coursD %}
+                            <h6 id="nomMessage">{{ discussionCourant.utilisateurD.prenom }} {{ discussionCourant.utilisateurD.nom }}</h6>
+                            <p id="intituleMessage">{{ discussionCourant.message }}</p><hr>
+                        {% endfor %}
+                    </div>
+                    <form class="form-horizontal" method="post" action="{{ path('poserQuestion', {id: cours.id}) }}">
+                        <textarea name="message" class="form-control" rows="2" required></textarea>
+                        <div class="clearfix"></div>
+                        <button class="btn btn-default btn-primary" type="submit" style="margin-top:10px">Envoyer votre question</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include "CoursBundle:Cours:footer.html.twig" %} 
+{% endblock %}
+

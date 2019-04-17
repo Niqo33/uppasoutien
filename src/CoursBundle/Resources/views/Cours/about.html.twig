@@ -1,0 +1,162 @@
+{% extends "::vueMere.html.twig" %}
+
+{% block contenuCentral %}
+    <!-- Additional fonts for this theme -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this theme -->
+    <link href="{{ asset('css/agency.css') }}" rel="stylesheet">
+
+    
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+	<script src="{{ asset('js/agency.js') }}"></script>
+
+    <!-- About -->
+    <section id="about" {#style="background-color:#FAFAFA"#}>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">À propos</h2>
+                    <h3 class="section-subheading text-muted">L'application UPPA Soutien est un projet universitaire conçu en 4 semestres.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="rounded-circle img-fluid" src="../img/S1b.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Semestre n°1</h4>
+                                    <h4 class="subheading">Une idée naissante</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Nicolas et Alex sont deux étudiants qui avaient beaucoup de mal à obtenir de bonnes notes à l'université. Un soir, plongés dans leurs révisions, ils ont eu l'idée de génie : faciliter les rencontres entres étudiants, nuls comme eux, et excellents élèves pour qu'ils les aident à avoir de meilleurs notes !</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="rounded-circle img-fluid" src="../img/S2.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Semestre n°2</h4>
+                                    <h4 class="subheading">Vive la conception</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">La conception de l'application, étape incontestée et pourtant, baclée par tous, sauf par nous bien-sûr. C'est ici qu'UPPA Soutien a été pensé et travaillé à ses débuts. Tous ce que vous pouvez faire a été vu. C'est grâce à nous que vous pouvez correctement noter un élève ou au contraire le sacker parce qu'il a été en retard de 13 secondes.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="rounded-circle img-fluid" src="../img/S3.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Semestre n°3</h4>
+                                    <h4 class="subheading">Préparation au développement<!--Le Semestre du "10 pck vous êtes 3"--></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Soucieux du détail, c'est à ce moment que nous avons fignolé la conception, appris les langages qui allaient nous servir et visualisé le côté graphique de l'application. Nous avons mis en place les derniers préparatifs, plus rien ne devait être laissé au hasard.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="rounded-circle img-fluid" src="../img/S4.png" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Semestre n°4</h4>
+                                    <h4 class="subheading">Le développement</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Etape majoritairement préféré par les étudiants de l'IUT, le développement ! C'est l'étape la plus simple et la plus complexe en même temps. "Simple" car il suffit d'appliquer tous ce que tu as préparé les trois semestres précédents mais "complexe" car, tu passe plus de temps à débugger ton code qu'à l'écrire.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <h4>Be Part
+                                    <br>Of Our
+                                    <br>Story!</h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{#
+    <!-- Team -->
+    <section id="team" class="bg-faded" style="background-color:#2c3e50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading titreTeam">Notre Equipe</h2>
+                    <h3 class="section-subheading text-muted">Présentation de la "Dream team".</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="https://pbs.twimg.com/profile_images/695775217940086785/PXQe5Ecl.jpg" class="mx-auto rounded-circle" alt="">
+                        <h4 class="titreTeam" >Nicolas Valsecchi</h4>
+                        <p class="text-muted">Chef de projet</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/xNiqo"><i class="fa fa-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="https://pbs.twimg.com/profile_images/378800000688057263/f38696fb2e253777b19c9d0447215e6f.jpeg" class="mx-auto rounded-circle" alt="">
+                        <h4 class="titreTeam" >Alex Portes-Narrieu</h4>
+                        <p class="text-muted">Analyste - Développeur</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/alex.portesnarrieu"><i class="fa fa-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="https://pbs.twimg.com/profile_images/830187878919630854/hC2cPPX3.jpg" class="mx-auto rounded-circle" alt="">
+                        <h4 class="titreTeam" >Kilian Weydert</h4>
+                        <p class="text-muted">Analyste - Développeur</p>
+                        <ul class="list-inline social-buttons">
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item"><a href="https://www.facebook.com/kilian.weydert"><i class="fa fa-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <br>
+                    <p class="large text-muted">Ce projet a été realisé sous la tutelle de l'Institut Universitaire de Bayonne et du Pays Basque.</p>
+            </div>
+        </div>
+    </section>
+#}    
+	<!-- Custom JavaScript for this theme -->
+	<script src="js/agency.min.js"></script>
+	
+{% endblock contenuCentral %}
